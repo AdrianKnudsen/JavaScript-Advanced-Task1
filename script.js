@@ -1,5 +1,5 @@
 
-const officeQuotes = [ 
+const originalQuotes = [ 
     
     `"And i knew exactly what to do. but in a much more real sense, i had no idea what to do." - Michael Scott` ,
 
@@ -29,31 +29,39 @@ const officeQuotes = [
 
     ];
 
-   
 
 const displayQuoteButton = document.querySelector("#displayQuote");
 const clearQuotesButton = document.querySelector("#clearQuotes");
 const quoteBox = document.querySelector("#quoteBox");
 
-function displaySingleQuote() {
+let officeQuotes = [...originalQuotes]
 
-    if (officeQuotes.length > 0) {
-        const quote = officeQuotes.shift();
+let currentIndex = 0;
+
+function displaySingleQuote() {
+    if (currentIndex < officeQuotes.length) {
+        const quote = officeQuotes[currentIndex];
 
         const paragraph = document.createElement("p");
         paragraph.textContent = quote;
 
         quoteBox.appendChild(paragraph);
 
+        currentIndex++;
+
     } else {
         quoteBox.textContent = "No more quotes. :("
     }
+
 }
 
 function clearAllQuotes() {
     while (quoteBox.firstChild) {
         quoteBox.removeChild(quoteBox.firstChild);
     }
+
+    currentIndex = 0;
+
 }
 
 
